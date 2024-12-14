@@ -32,14 +32,14 @@ import lombok.NoArgsConstructor;
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long userId;
 
-	@Size(min = 5, max = 20, message = "First Name must be between 5 and 30 characters long")
+	@Size(min = 2, max = 20, message = "First Name must be between 2 and 30 characters long")
 	@Pattern(regexp = "^[a-zA-Z]*$", message = "First Name must not contain numbers or special characters")
 	private String firstName;
 
-	@Size(min = 5, max = 20, message = "Last Name must be between 5 and 30 characters long")
+	@Size(min = 2, max = 20, message = "Last Name must be between 2 and 30 characters long")
 	@Pattern(regexp = "^[a-zA-Z]*$", message = "Last Name must not contain numbers or special characters")
 	private String lastName;
 
@@ -53,7 +53,7 @@ public class User {
 
 	private String password;
 	//
-
+	
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
